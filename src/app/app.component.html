@@ -1,20 +1,14 @@
-<html>
-
-<body>
-  <form autocomplete="off">
-    <div class="form-group text-center">
-      <h2>Acesso ao Sistema</h2>
-    </div>
-    <div class="mb-3">
-      <label for="username" class="form-label">Nome do Usuário</label>
-      <input type="text" class="form-control" id="username" placeholder="Insira o nome de usuário" required>
-    </div>
-    <div class="mb-3">
-      <label for="password" class="form-label">Password</label>
-      <input type="password" class="form-control" id="password" placeholder="Insira a palavra-passe" required>
-    </div>
-    <button type="button" class="btn btn-primary">Acessar</button>
-  </form>
-</body>
-
-</html>
+<form autocomplete="off">
+  <div class="form-group text-center">
+    <h2>Acesso ao Sistema</h2>
+  </div>
+  <div class="mb-3">
+    <label for="username" class="form-label">Nome do Usuário</label>
+    <input type="text" class="form-control" [(ngModel)] = "usuario.userName" [ngModelOptions] = "{standalone: true}" id="username" placeholder="Insira o nome de usuário" required>
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input type="password" class="form-control" [(ngModel)] = "usuario.passWord" [ngModelOptions] = "{standalone: true}" id="password" placeholder="Insira a palavra-passe" required>
+  </div>
+  <button type="button" class="btn btn-primary" (click) = "login()">Acessar</button>
+</form>
