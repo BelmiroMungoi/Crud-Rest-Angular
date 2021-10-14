@@ -4,11 +4,19 @@
   </div>
   <div class="mb-3">
     <label for="username" class="form-label">Nome do Usuário</label>
-    <input type="text" class="form-control" [(ngModel)] = "usuario.userName" [ngModelOptions] = "{standalone: true}" id="username" placeholder="Insira o nome de usuário" required>
+    <input type="text" class="form-control" #user="ngModel" [(ngModel)]="usuario.userName"
+      [ngModelOptions]="{standalone: true}" id="username" placeholder="Insira o nome de usuário" required>
+    <div *ngIf="user.invalid" class="alert alert-danger">
+      Preencha o campo nome do usuário
+    </div>
   </div>
   <div class="mb-3">
     <label for="password" class="form-label">Password</label>
-    <input type="password" class="form-control" [(ngModel)] = "usuario.passWord" [ngModelOptions] = "{standalone: true}" id="password" placeholder="Insira a palavra-passe" required>
+    <input type="password" class="form-control" #senha="ngModel" [(ngModel)]="usuario.passWord"
+      [ngModelOptions]="{standalone: true}" id="password" placeholder="Insira a palavra-passe" required>
+    <div *ngIf="senha.invalid" class="alert alert-danger">
+      Preencha o campo Password
+    </div>
   </div>
-  <button type="button" class="btn btn-primary" (click) = "login()">Acessar</button>
+  <button type="button" [disabled]="user.invalid || senha.invalid" class="btn btn-primary" (click)="login()">Acessar</button>
 </form>
