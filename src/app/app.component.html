@@ -1,1 +1,29 @@
+<div id="page-content-wrapper">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" [routerLink]="['/home']" routerLinkActive="router-link-active">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" (click)="sair()">Sair</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+						data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
+						Menu
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<li><a class="dropdown-item" href="/">Action</a></li>
+						<li>
+							<hr class="dropdown-divider">
+						</li>
+						<li><a class="dropdown-item" href="/logout">Sair</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</nav>
+</div>
+
 <router-outlet></router-outlet>
