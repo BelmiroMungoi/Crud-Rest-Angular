@@ -1,0 +1,14 @@
+<table class="table table-striped table-hover">
+	<thead>
+		<th>ID</th>
+		<th>Nome Completo</th>
+		<th>Nome de Usuario</th>
+	</thead>
+	<tbody>
+		<tr *ngFor="let usuario of usuarios">
+			<td>{{usuario.id}}</td>
+			<td>{{usuario.fullName}}</td>
+			<td>{{usuario.userName}}</td>
+		</tr>
+	</tbody>
+</table>
