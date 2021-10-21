@@ -10,6 +10,7 @@ import { Usuario } from 'src/app/model/usuario';
 export class UsuarioComponent implements OnInit {
 
   usuarios!: Usuario[];
+  nome!: string;
 
   constructor(private usuarioService: UsuarioService) { }
 
@@ -19,12 +20,20 @@ export class UsuarioComponent implements OnInit {
     });
   }
 
+  findUser(): void {
+    this.usuarioService.findUserByName(this.nome).subscribe(data => {
+      this.usuarios = data;
+    });
+  }
+
   deleteUser(id: Number) {
     this.usuarioService.deleteUser(id).subscribe(data => {
       this.usuarioService.getUserList().subscribe(data => {
         this.usuarios = data;
       });
-    })
+    });
   }
+
+
 
 }
