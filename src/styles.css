@@ -7,3 +7,10 @@
 	border-left: 5px solid #A94442; /*Red*/
 }
 
+body {
+	background: whitesmoke;
+}
+
+form, table {
+	background: white;
+}
