@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
+import { Usuario } from 'src/app/model/usuario';
+import { UsuarioService } from 'src/app/service/usuario.service';
 
 @Component({
   selector: 'app-root',
@@ -8,14 +10,22 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class UsuarioAddComponent implements OnInit {
 
-  constructor(private routeActive: ActivatedRoute) { }
+  usuario = new Usuario();
+
+  constructor(private routeActive: ActivatedRoute, private userService: UsuarioService) { }
 
   ngOnInit(): void {
     let id = this.routeActive.snapshot.paramMap.get('id');
 
     if (id != null) {
-      console.log("ID: " + id);
+      this.userService.getUserById(id).subscribe(data => {
+        this.usuario = data;
+      });
     }
+  }
+
+  saveUser(){
+    console.log(this.usuario)
   }
 
 }
