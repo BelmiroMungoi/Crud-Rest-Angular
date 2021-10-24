@@ -14,15 +14,23 @@ export class UsuarioService {
     return this.http.get<any>(AppConstants.baseUrl);
   }
 
-  getUserById(id: any):Observable<any> {
+  getUserById(id: any): Observable<any> {
     return this.http.get(AppConstants.baseUrl + id);
   }
 
   deleteUser(id: Number): Observable<any> {
-    return this.http.delete(AppConstants.baseUrl + id, {responseType: 'text'});
+    return this.http.delete(AppConstants.baseUrl + id, { responseType: 'text' });
   }
 
-  findUserByName(nome: String) : Observable<any> {
+  findUserByName(nome: String): Observable<any> {
     return this.http.get(AppConstants.baseUrl + "nome/" + nome);
+  }
+
+  saveUser(user: any): Observable<any> {
+    return this.http.post<any>(AppConstants.baseUrl, user);
+  }
+
+  updateUser(user: any): Observable<any> {
+    return this.http.put<any>(AppConstants.baseUrl, user);
   }
 }
