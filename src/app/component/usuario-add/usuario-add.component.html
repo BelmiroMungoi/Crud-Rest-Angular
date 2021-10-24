@@ -20,7 +20,6 @@
 	<div class="col-md-12">
 		<button type="button" class="btn btn-success" style="width: 87px;" [routerLink]="['/usuarioList']" >Voltar</button>
 		<button type="button" class="btn btn-primary" style="width: 87px; margin-left: 5px;" (click)="saveUser()">Salvar</button>
-		<button type="button" class="btn btn-danger" style="width: 87px; margin-left: 5px;"
-			onclick="document.getElementById('formUser').reset()">Cancelar</button>
+		<button type="button" class="btn btn-danger" style="width: 87px; margin-left: 5px;" (click)="cancelar()">Cancelar</button>
 	</div>
 </form>
