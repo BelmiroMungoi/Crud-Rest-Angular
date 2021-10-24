@@ -24,8 +24,23 @@ export class UsuarioAddComponent implements OnInit {
     }
   }
 
-  saveUser(){
-    console.log(this.usuario)
+  saveUser() {
+    if (this.usuario.id != null && this.usuario.id.toString().trim() != null) {
+      this.userService.updateUser(this.usuario).subscribe(data => {
+        this.cancelar();
+        console.log("Editando usuario " + data)
+      });
+    } else {
+
+      this.userService.saveUser(this.usuario).subscribe(data => {
+        this.cancelar();
+        console.log("Salvando Usuario " + data)
+      });
+    }
+  }
+
+  cancelar() {
+    this.usuario = new Usuario();
   }
 
 }
