@@ -4,14 +4,15 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { UsuarioComponent } from './component/usuario/usuario.component';
 import { UsuarioAddComponent } from './component/usuario-add/usuario-add.component';
+import { GuardianGuard } from './service/guardian.guard';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent, canActivate: [GuardianGuard] },
   { path: 'login', component: LoginComponent },
   { path: '', component: LoginComponent },
-  { path: 'usuarioList', component: UsuarioComponent },
-  { path: 'usuarioAdd', component: UsuarioAddComponent },
-  { path: 'usuarioAdd/:id', component: UsuarioAddComponent }
+  { path: 'usuarioList', component: UsuarioComponent, canActivate: [GuardianGuard] },
+  { path: 'usuarioAdd', component: UsuarioAddComponent, canActivate: [GuardianGuard] },
+  { path: 'usuarioAdd/:id', component: UsuarioAddComponent, canActivate: [GuardianGuard] }
 
 ];
 
