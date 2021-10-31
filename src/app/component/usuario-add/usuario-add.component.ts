@@ -39,6 +39,16 @@ export class UsuarioAddComponent implements OnInit {
     }
   }
 
+  deletarEndereco(id: any) {
+    if (id != null && confirm("Deseja Remover?")) {
+      this.userService.deleteEndereco(id).subscribe(data => {
+        const index = this.usuario.enderecos.indexOf(id);// identifica a posicao do endereco removido na lista
+        this.usuario.enderecos.splice(index - 1, 1);// remove o endereco na tabela
+        console.info("Endereco Removido " + data);
+      })
+    }
+  }
+
   cancelar() {
     this.usuario = new Usuario();
   }
