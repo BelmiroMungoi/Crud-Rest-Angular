@@ -5,3 +5,12 @@ form {
   max-width: 1400px;
   box-sizing: border-box;
 }
+
+h2 {
+  margin: 0px 0px 0px 0px;
+}
+
+table{
+  padding: 0px;
+  margin: 10px auto;
+}
