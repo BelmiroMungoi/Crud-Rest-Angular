@@ -1,5 +1,6 @@
-<h2 style="padding: 10px;">Cadastro de Usuário</h2>
 <form id="formUser" class="row g-3" #formValida="ngForm" autocomplete="off">
+	
+	<h2 class="text-center" >Cadastro de Usuário</h2>
 
 	<div class="col-md-2">
 		<label for="id" class="form-label">ID</label>
@@ -20,6 +21,47 @@
 		<span style="color: red; font-size: 23px;" *ngIf="senha.invalid"> *</span>
 		<input type="password" #senha="ngModel" [(ngModel)]="usuario.passWord" [ngModelOptions]="{standalone: true}" class="form-control" name="passWord" required placeholder="Exemplo: password12">
 	</div>
+	
+	<div class="card text-center">
+		<div>
+			Endereco do Usuário
+		</div>
+		<div class="card-body" style="padding-left: 1px;">
+			<div class="row g-3">
+				<div class="col-md-3">
+					<input type="text" class="form-control" placeholder="Insira a Provincia">
+				</div>
+				<div class="col-md-3">
+					<input type="text" class="form-control" placeholder="Insira o Distrito">
+				</div>
+				<div class="col-md-3">
+					<input type="text" class="form-control" placeholder="Insira o Nr. de Telefone">
+				</div>
+				<div class="col-md-1">
+					<button type="text" class="btn btn-dark">Adicionar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<table class="table table-striped table-hover">
+		<thead>
+			<th>ID</th>
+			<th>Provincia</th>
+			<th>Distrito</th>
+			<th>Telefone</th>
+			<th>Accões</th>
+		</thead>
+		<tbody>
+			<tr *ngFor="let ender of usuario.enderecos">
+				<td>{{ender.id}}</td>
+				<td>{{ender.provincia}}</td>
+				<td>{{ender.distrito}}</td>
+				<td>{{ender.telefone}}</td>
+				<td><button class="btn btn-danger" (click) = "deletarEndereco(ender.id)">Deletar</button></td>
+			</tr>
+		</tbody>
+	</table>
 
 	<div class="col-md-12">
 		<button type="button" class="btn btn-success" style="width: 87px;" [routerLink]="['/usuarioList']" >Voltar</button>
