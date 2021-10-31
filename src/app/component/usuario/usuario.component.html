@@ -24,8 +24,8 @@
 			<td>{{usuario.fullName}}</td>
 			<td>{{usuario.userName}}</td>
 			<td>
-				<button (click)="deleteUser(usuario.id)" style="width: 77px;" class="btn btn-primary">Deletar</button>
-				<button [routerLink]="['/usuarioAdd', usuario.id]" style="width: 77px; margin-left: 5px;"
+				<button (click)="deleteUser(usuario.id)" style="width: 77px; margin-right: 5px;" class="btn btn-primary">Deletar</button>
+				<button [routerLink]="['/usuarioAdd', usuario.id]" style="width: 77px;"
 					class="btn btn-warning">Editar</button>
 			</td>
 		</tr>
