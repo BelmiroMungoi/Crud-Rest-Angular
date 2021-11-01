@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { Usuario } from 'src/app/model/usuario';
 import { UsuarioService } from 'src/app/service/usuario.service';
+import { Endereco } from 'src/app/model/endereco' 
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,8 @@ import { UsuarioService } from 'src/app/service/usuario.service';
 export class UsuarioAddComponent implements OnInit {
 
   usuario = new Usuario();
+
+  endereco = new Endereco();
 
   constructor(private routeActive: ActivatedRoute, private userService: UsuarioService) { }
 
@@ -39,7 +42,23 @@ export class UsuarioAddComponent implements OnInit {
     }
   }
 
+  addEndereco() {
+
+    if (this.usuario.enderecos === undefined) {
+      this.usuario.enderecos = new Array<Endereco>();
+    }
+
+    this.usuario.enderecos.push(this.endereco);
+    this.endereco = new Endereco();
+  }
+
   deletarEndereco(id: any, i: any) {
+
+    if (id == null) {
+      this.usuario.enderecos.splice(i, 1);
+      return;
+    }
+
     if (id != null && confirm("Deseja Remover?")) {
       this.userService.deleteEndereco(id).subscribe(data => {
         this.usuario.enderecos.splice(i, 1);
@@ -50,6 +69,7 @@ export class UsuarioAddComponent implements OnInit {
 
   cancelar() {
     this.usuario = new Usuario();
+    this.endereco = new Endereco();
   }
 
 }
