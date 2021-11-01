@@ -3,5 +3,5 @@ export class Endereco {
 	id!: Number;
 	provincia!: String;
 	distrito!: String;
-	telefone!: String;
+	telefone!: string;
 }
