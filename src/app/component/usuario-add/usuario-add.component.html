@@ -53,12 +53,12 @@
 			<th>Accões</th>
 		</thead>
 		<tbody>
-			<tr *ngFor="let ender of usuario.enderecos">
+			<tr *ngFor="let ender of usuario.enderecos; let i = index">
 				<td>{{ender.id}}</td>
 				<td>{{ender.provincia}}</td>
 				<td>{{ender.distrito}}</td>
 				<td>{{ender.telefone}}</td>
-				<td><button class="btn btn-danger" (click) = "deletarEndereco(ender.id)">Deletar</button></td>
+				<td><button class="btn btn-danger" (click) = "deletarEndereco(ender.id, i)">Deletar</button></td>
 			</tr>
 		</tbody>
 	</table>
