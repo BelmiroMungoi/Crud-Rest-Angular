@@ -10,8 +10,9 @@ import { LoginComponent } from './login/login.component'; //Para as requisicoes 
 import { HttpInterceptorModule } from './service/header-interceptor.service';
 import { UsuarioComponent } from './component/usuario/usuario.component';
 import { UsuarioAddComponent } from './component/usuario-add/usuario-add.component';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
 
-
+export const optionMask: Partial<IConfig> | (() => Partial<IConfig>) = {};
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +26,8 @@ import { UsuarioAddComponent } from './component/usuario-add/usuario-add.compone
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    HttpInterceptorModule
+    HttpInterceptorModule,
+    NgxMaskModule.forRoot(optionMask)
   ],
   providers: [],
   bootstrap: [AppComponent]
