@@ -35,7 +35,7 @@
 					<input type="text" [(ngModel)] = "endereco.distrito" class="form-control" name="distrito" placeholder="Insira o Distrito">
 				</div>
 				<div class="col-md-3">
-					<input type="text" [(ngModel)] = "endereco.telefone" class="form-control" name="telefone" placeholder="Insira o Nr. de Telefone">
+					<input type="text" mask="00 000 0000" [(ngModel)] = "endereco.telefone" class="form-control" name="telefone" placeholder="Insira o Nr. de Telefone">
 				</div>
 				<div class="col-md-1">
 					<button type="text" class="btn btn-dark" (click) = "addEndereco()">Adicionar</button>
@@ -57,7 +57,7 @@
 				<td>{{ender.id}}</td>
 				<td>{{ender.provincia}}</td>
 				<td>{{ender.distrito}}</td>
-				<td>{{ender.telefone}}</td>
+				<td>{{ender.telefone | mask: '00 000 0000'}}</td>
 				<td><button class="btn btn-danger" (click) = "deletarEndereco(ender.id, i)">Deletar</button></td>
 			</tr>
 		</tbody>
