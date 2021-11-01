@@ -29,16 +29,16 @@
 		<div class="card-body" style="padding-left: 1px;">
 			<div class="row g-3">
 				<div class="col-md-3">
-					<input type="text" class="form-control" placeholder="Insira a Provincia">
+					<input type="text" [(ngModel)] = "endereco.provincia" class="form-control" name="provincia" placeholder="Insira a Provincia">
 				</div>
 				<div class="col-md-3">
-					<input type="text" class="form-control" placeholder="Insira o Distrito">
+					<input type="text" [(ngModel)] = "endereco.distrito" class="form-control" name="distrito" placeholder="Insira o Distrito">
 				</div>
 				<div class="col-md-3">
-					<input type="text" class="form-control" placeholder="Insira o Nr. de Telefone">
+					<input type="text" [(ngModel)] = "endereco.telefone" class="form-control" name="telefone" placeholder="Insira o Nr. de Telefone">
 				</div>
 				<div class="col-md-1">
-					<button type="text" class="btn btn-dark">Adicionar</button>
+					<button type="text" class="btn btn-dark" (click) = "addEndereco()">Adicionar</button>
 				</div>
 			</div>
 		</div>
