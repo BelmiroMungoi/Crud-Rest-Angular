@@ -11,6 +11,7 @@ export class UsuarioComponent implements OnInit {
 
   usuarios!: Usuario[];
   nome!: string;
+  p!: any;
 
   constructor(private usuarioService: UsuarioService) { }
 
