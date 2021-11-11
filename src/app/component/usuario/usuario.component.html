@@ -18,7 +18,7 @@
 		<th>Accões</th>
 	</thead>
 	<tbody>		
-		<tr *ngFor="let usuario of usuarios | paginate: { itemsPerPage: 8, currentPage: p }">
+		<tr *ngFor="let usuario of usuarios | paginate: { itemsPerPage: 8, currentPage: p, totalItems: total}">
 			<td>{{usuario.id}}</td>
 			<td>{{usuario.fullName}}</td>
 			<td>{{usuario.userName}}</td>
@@ -31,5 +31,6 @@
 </table>
 
 <div class="text-center">
-	<pagination-controls (pageChange) ="p = $event"></pagination-controls>
+	<pagination-controls (pageChange) ="loadPage(p = $event)" 
+	previousLabel="Anterior" nextLabel="Próximo"></pagination-controls>
 </div>

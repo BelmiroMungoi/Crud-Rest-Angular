@@ -11,6 +11,7 @@ export class UsuarioComponent implements OnInit {
 
   usuarios!: Usuario[];
   nome!: string;
+  total!: number;
   p!: any;
 
   constructor(private usuarioService: UsuarioService) { }
@@ -33,6 +34,10 @@ export class UsuarioComponent implements OnInit {
         this.usuarios = data;
       });
     });
+  }
+
+  loadPage(e: any){
+    console.info("Testing page "+ e)
   }
 
 
