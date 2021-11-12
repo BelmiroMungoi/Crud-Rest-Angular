@@ -14,6 +14,10 @@ export class UsuarioService {
     return this.http.get<any>(AppConstants.baseUrl);
   }
 
+  getUserListPage(page: any): Observable<any> {
+    return this.http.get<any>(AppConstants.baseUrl + 'page/' + page);
+  }
+
   getUserById(id: any): Observable<any> {
     return this.http.get(AppConstants.baseUrl + id);
   }
