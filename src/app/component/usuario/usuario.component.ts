@@ -29,11 +29,13 @@ export class UsuarioComponent implements OnInit {
     });
   }
 
-  deleteUser(id: Number) {
+  deleteUser(id: Number, index: any) {
     this.usuarioService.deleteUser(id).subscribe(data => {
-      this.usuarioService.getUserList().subscribe(data => {
+      this.usuarios.splice(index, 1);
+      
+      /*this.usuarioService.getUserList().subscribe(data => {
         this.usuarios = data;
-      });
+      });*/
     });
   }
 
