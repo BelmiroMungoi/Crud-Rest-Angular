@@ -18,7 +18,8 @@ export class UsuarioComponent implements OnInit {
 
   ngOnInit(): void {
     this.usuarioService.getUserList().subscribe(data => {
-      this.usuarios = data;
+      this.usuarios = data.content;
+      this.total = data.totalElements;
     });
   }
 
@@ -36,8 +37,11 @@ export class UsuarioComponent implements OnInit {
     });
   }
 
-  loadPage(e: any){
-    console.info("Testing page "+ e)
+  loadPage(pag: any){
+    this.usuarioService.getUserListPage(pag - 1).subscribe(data => {
+      this.usuarios = data.content;
+      this.total = data.totalElements;
+    });
   }
 
 
