@@ -24,26 +24,43 @@ export class UsuarioComponent implements OnInit {
   }
 
   findUser(): void {
-    this.usuarioService.findUserByName(this.nome).subscribe(data => {
-      this.usuarios = data;
-    });
+    if (this.nome === '') {
+      this.ngOnInit();
+
+    } else {
+      this.usuarioService.findUserByName(this.nome).subscribe(data => {
+        this.usuarios = data.content;
+        this.total = data.totalElements;
+      });
+    }
   }
 
   deleteUser(id: Number, index: any) {
     this.usuarioService.deleteUser(id).subscribe(data => {
       this.usuarios.splice(index, 1);
-      
+
       /*this.usuarioService.getUserList().subscribe(data => {
         this.usuarios = data;
       });*/
     });
   }
 
-  loadPage(pag: any){
-    this.usuarioService.getUserListPage(pag - 1).subscribe(data => {
-      this.usuarios = data.content;
-      this.total = data.totalElements;
-    });
+  loadPage(pag: any) {
+
+    if (this.nome !== '' || this.nome !== null || this.nome === 'undefined') {
+      this.usuarioService.findUserByNamePage(this.nome, pag - 1).subscribe(data => {
+        this.usuarios = data.content;
+        this.total = data.totalElements;
+        console.info('Heyyy ' + pag)
+      });
+
+    } else {
+      this.usuarioService.getUserListPage(pag - 1).subscribe(data => {
+        this.usuarios = data.content;
+        this.total = data.totalElements;
+        console.info('Heyy');
+      });
+    }
   }
 
 
