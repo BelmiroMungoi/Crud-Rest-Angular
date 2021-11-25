@@ -7,4 +7,5 @@ export class Usuario {
 	userName!: string;
 	passWord!: string;
 	enderecos!: Array<Endereco>;
+	dataNascimento!: string;
 }
