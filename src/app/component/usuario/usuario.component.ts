@@ -25,7 +25,10 @@ export class UsuarioComponent implements OnInit {
 
   findUser(): void {
     if (this.nome === '') {
-      this.ngOnInit();
+      this.usuarioService.getUserList().subscribe(data => {
+        this.usuarios = data.content;
+        this.total = data.totalElements;
+      });
 
     } else {
       this.usuarioService.findUserByName(this.nome).subscribe(data => {
@@ -47,7 +50,7 @@ export class UsuarioComponent implements OnInit {
 
   loadPage(pag: any) {
 
-    if (this.nome !== '' || this.nome !== null || this.nome === 'undefined') {
+    if (this.nome !== '') {
       this.usuarioService.findUserByNamePage(this.nome, pag - 1).subscribe(data => {
         this.usuarios = data.content;
         this.total = data.totalElements;
