@@ -1,27 +1,43 @@
 <form id="formUser" class="row g-3" #formValida="ngForm" autocomplete="off">
-	
-	<h2 class="text-center" >Cadastro de Usuário</h2>
+
+	<h2 class="text-center">Cadastro de Usuário</h2>
 
 	<div class="col-md-2">
 		<label for="id" class="form-label">ID</label>
-		<input type="text" [(ngModel)]="usuario.id" [ngModelOptions]="{standalone: true}" class="form-control" id="id" readonly="readonly">
+		<input type="text" [(ngModel)]="usuario.id" [ngModelOptions]="{standalone: true}" class="form-control" id="id"
+			readonly="readonly">
 	</div>
 	<div class="col-md-12">
 		<label for="fullName" class="form-label">Nome Completo</label>
 		<span style="color: red; font-size: 23px;" *ngIf="nomeValidate.invalid"> *</span>
-		<input type="text" #nomeValidate="ngModel" [(ngModel)]="usuario.fullName" [ngModelOptions]="{standalone: true}" class="form-control" name="fullName" required placeholder="Exemplo: Monkey D. Luffy">
+		<input type="text" #nomeValidate="ngModel" [(ngModel)]="usuario.fullName" [ngModelOptions]="{standalone: true}"
+			class="form-control" name="fullName" required placeholder="Exemplo: Monkey D. Luffy">
 	</div>
 	<div class="col-md-6">
 		<label for="userName" class="form-label">Nome de Usuário</label>
 		<span style="color: red; font-size: 23px;" *ngIf="userValidate.invalid"> *</span>
-		<input type="text" #userValidate="ngModel" [(ngModel)]="usuario.userName" [ngModelOptions]="{standalone: true}" class="form-control" name="userName" required placeholder="Exemplo: Monkey">
+		<input type="text" #userValidate="ngModel" [(ngModel)]="usuario.userName" [ngModelOptions]="{standalone: true}"
+			class="form-control" name="userName" required placeholder="Exemplo: Monkey">
 	</div>
 	<div class="col-md-6">
 		<label for="passWord" class="form-label">Palavra-Passe</label>
 		<span style="color: red; font-size: 23px;" *ngIf="senha.invalid"> *</span>
-		<input type="password" #senha="ngModel" [(ngModel)]="usuario.passWord" [ngModelOptions]="{standalone: true}" class="form-control" name="passWord" required placeholder="Exemplo: password12">
+		<input type="password" #senha="ngModel" [(ngModel)]="usuario.passWord" [ngModelOptions]="{standalone: true}"
+			class="form-control" name="passWord" required placeholder="Exemplo: password12">
 	</div>
-	
+	<div class="form-group col-md-4">
+		<label for="birthday" class="form-label">Data de Nascimento</label>
+		<span style="color: red; font-size: 23px;" *ngIf="dataNasc.invalid"> *</span>
+		<div class="input-group">
+			<input type="text" #dataNasc="ngModel" [(ngModel)]="usuario.dataNascimento"
+				[ngModelOptions]="{standalone: true}" class="form-control" name="birthday" id="birthday" required
+				placeholder="dd/mm/yyyy" ngbDatepicker #birthday="ngbDatepicker">
+			<div class="input-group-append">
+				<button type="button" class="btn btn-primary" (click)="birthday.toggle()">.</button>
+			</div>
+		</div> 
+	</div>
+
 	<div class="card text-center">
 		<div>
 			Endereco do Usuário
@@ -29,16 +45,19 @@
 		<div class="card-body" style="padding-left: 1px;">
 			<div class="row g-3">
 				<div class="col-md-3">
-					<input type="text" [(ngModel)] = "endereco.provincia" class="form-control" name="provincia" placeholder="Insira a Provincia">
+					<input type="text" [(ngModel)]="endereco.provincia" class="form-control" name="provincia"
+						placeholder="Insira a Provincia">
 				</div>
 				<div class="col-md-3">
-					<input type="text" [(ngModel)] = "endereco.distrito" class="form-control" name="distrito" placeholder="Insira o Distrito">
+					<input type="text" [(ngModel)]="endereco.distrito" class="form-control" name="distrito"
+						placeholder="Insira o Distrito">
 				</div>
 				<div class="col-md-3">
-					<input type="text" mask="00 000 0000" [(ngModel)] = "endereco.telefone" class="form-control" name="telefone" placeholder="Insira o Nr. de Telefone">
+					<input type="text" mask="00 000 0000" [(ngModel)]="endereco.telefone" class="form-control"
+						name="telefone" placeholder="Insira o Nr. de Telefone">
 				</div>
 				<div class="col-md-1">
-					<button type="text" class="btn btn-dark" (click) = "addEndereco()">Adicionar</button>
+					<button type="text" class="btn btn-dark" (click)="addEndereco()">Adicionar</button>
 				</div>
 			</div>
 		</div>
@@ -58,14 +77,18 @@
 				<td>{{ender.provincia}}</td>
 				<td>{{ender.distrito}}</td>
 				<td>{{ender.telefone | mask: '00 000 0000'}}</td>
-				<td><button class="btn btn-danger" (click) = "deletarEndereco(ender.id, i)">Deletar</button></td>
+				<td><button class="btn btn-danger" (click)="deletarEndereco(ender.id, i)">Deletar</button></td>
 			</tr>
 		</tbody>
 	</table>
 
 	<div class="col-md-12">
-		<button type="button" class="btn btn-success" style="width: 87px;" [routerLink]="['/usuarioList']" >Voltar</button>
-		<button type="button" class="btn btn-primary" style="width: 87px; margin-left: 5px;" [disabled]="nomeValidate.invalid || userValidate.invalid || senha.invalid" (click)="saveUser()">Salvar</button>
-		<button type="button" class="btn btn-danger" style="width: 87px; margin-left: 5px;" (click)="cancelar()">Cancelar</button>
+		<button type="button" class="btn btn-success" style="width: 87px;"
+			[routerLink]="['/usuarioList']">Voltar</button>
+		<button type="button" class="btn btn-primary" style="width: 87px; margin-left: 5px;"
+			[disabled]="nomeValidate.invalid || userValidate.invalid || senha.invalid"
+			(click)="saveUser()">Salvar</button>
+		<button type="button" class="btn btn-danger" style="width: 87px; margin-left: 5px;"
+			(click)="cancelar()">Cancelar</button>
 	</div>
 </form>
