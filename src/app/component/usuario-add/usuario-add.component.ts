@@ -1,13 +1,50 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { Usuario } from 'src/app/model/usuario';
 import { UsuarioService } from 'src/app/service/usuario.service';
-import { Endereco } from 'src/app/model/endereco' 
+import { Endereco } from 'src/app/model/endereco'
+import { NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
+@Injectable()
+export class FormataData extends NgbDateParserFormatter {
+
+  readonly DELIMETER = '/';
+
+  parse(value: string): NgbDateStruct | null {
+
+    if (value) {
+      let date = value.split(this.DELIMETER);
+      return {
+        day: parseInt(date[0], 10),
+        month: parseInt(date[1], 10),
+        year: parseInt(date[2], 10)
+      }
+    }
+    return null;
+  }
+
+  format(date: NgbDateStruct | null): string {
+
+    return date ? validaDate(date.day) + this.DELIMETER + validaDate(date.month) + this.DELIMETER + date.year : '';
+  }
+
+  toModel(date: NgbDateStruct | null): string | null{
+    return date ? date.day + this.DELIMETER + date.month + this.DELIMETER + date.year : null;
+  }
+}
+
+function validaDate(valor: any) {
+  if (valor.toString !== '' && parseInt(valor) <= 9) {
+    return '0' + valor;
+  } else {
+    return valor;
+  }
+}
 @Component({
   selector: 'app-root',
   templateUrl: './usuario-add.component.html',
-  styleUrls: ['./usuario-add.component.css']
+  styleUrls: ['./usuario-add.component.css'],
+  providers: [{ provide: NgbDateParserFormatter, useClass: FormataData }]
 })
 export class UsuarioAddComponent implements OnInit {
 
