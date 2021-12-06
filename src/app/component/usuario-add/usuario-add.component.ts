@@ -3,17 +3,40 @@ import { ActivatedRoute } from "@angular/router";
 import { Usuario } from 'src/app/model/usuario';
 import { UsuarioService } from 'src/app/service/usuario.service';
 import { Endereco } from 'src/app/model/endereco'
-import { NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateAdapter, NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { Profissao } from 'src/app/model/profissao';
+
+@Injectable()
+export class FormatDateAdapter extends NgbDateAdapter<string>{
+
+  readonly DELIMITER = '/';
+
+  fromModel(value: string | null): NgbDateStruct | null {
+    if (value) {
+      let date = value.split(this.DELIMITER);
+      return {
+        day: parseInt(date[0], 10),
+        month: parseInt(date[1], 10),
+        year: parseInt(date[2], 10)
+      }
+    }
+    return null;
+  }
+  toModel(date: NgbDateStruct | null): string | null {
+    return date ? date.day + this.DELIMITER + date.month + this.DELIMITER + date.year : null;
+  }
+
+}
 
 @Injectable()
 export class FormataData extends NgbDateParserFormatter {
 
-  readonly DELIMETER = '/';
+  readonly DELIMITER = '/';
 
   parse(value: string): NgbDateStruct | null {
 
     if (value) {
-      let date = value.split(this.DELIMETER);
+      let date = value.split(this.DELIMITER);
       return {
         day: parseInt(date[0], 10),
         month: parseInt(date[1], 10),
@@ -25,11 +48,11 @@ export class FormataData extends NgbDateParserFormatter {
 
   format(date: NgbDateStruct | null): string {
 
-    return date ? validaDate(date.day) + this.DELIMETER + validaDate(date.month) + this.DELIMETER + date.year : '';
+    return date ? validaDate(date.day) + this.DELIMITER + validaDate(date.month) + this.DELIMITER + date.year : '';
   }
 
-  toModel(date: NgbDateStruct | null): string | null{
-    return date ? date.day + this.DELIMETER + date.month + this.DELIMETER + date.year : null;
+  toModel(date: NgbDateStruct | null): string | null {
+    return date ? date.day + this.DELIMITER + date.month + this.DELIMITER + date.year : null;
   }
 }
 
@@ -44,7 +67,8 @@ function validaDate(valor: any) {
   selector: 'app-root',
   templateUrl: './usuario-add.component.html',
   styleUrls: ['./usuario-add.component.css'],
-  providers: [{ provide: NgbDateParserFormatter, useClass: FormataData }]
+  providers: [{ provide: NgbDateParserFormatter, useClass: FormataData },
+  { provide: NgbDateAdapter, useClass: FormatDateAdapter }]
 })
 export class UsuarioAddComponent implements OnInit {
 
@@ -52,9 +76,16 @@ export class UsuarioAddComponent implements OnInit {
 
   endereco = new Endereco();
 
+  profissoes!: Array<Profissao>;
+
   constructor(private routeActive: ActivatedRoute, private userService: UsuarioService) { }
 
   ngOnInit(): void {
+
+    this.userService.getProfissaoList().subscribe(data => {
+      this.profissoes = data;
+    })
+
     let id = this.routeActive.snapshot.paramMap.get('id');
 
     if (id != null) {
