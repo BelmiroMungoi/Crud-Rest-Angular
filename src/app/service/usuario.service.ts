@@ -46,6 +46,10 @@ export class UsuarioService {
     return this.http.delete(AppConstants.baseUrl + "removeEndereco/" + id, {responseType: 'text'});
   }
 
+  getProfissaoList(): Observable<any> {
+    return this.http.get(AppConstants.baseServer + "profissao/")
+  }
+
   userAuthenticated() {
     if (localStorage.getItem('token') != null &&
       localStorage.getItem('token')?.toString().trim() != null) {
