@@ -1,4 +1,5 @@
 import { Endereco } from './endereco';
+import { Profissao } from './profissao';
 
 export class Usuario {
 
@@ -8,4 +9,5 @@ export class Usuario {
 	passWord!: string;
 	enderecos!: Array<Endereco>;
 	dataNascimento!: string;
+	profissao: Profissao = new Profissao();
 }
