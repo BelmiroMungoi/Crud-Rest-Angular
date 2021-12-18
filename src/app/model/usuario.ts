@@ -10,4 +10,5 @@ export class Usuario {
 	enderecos!: Array<Endereco>;
 	dataNascimento!: string;
 	profissao: Profissao = new Profissao();
+	salario!: DoubleRange;
 }
