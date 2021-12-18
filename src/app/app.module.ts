@@ -13,6 +13,7 @@ import { UsuarioAddComponent } from './component/usuario-add/usuario-add.compone
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxCurrencyModule } from "ngx-currency";
 
 export const optionMask: Partial<IConfig> | (() => Partial<IConfig>) = {};
 
@@ -32,7 +33,8 @@ export const optionMask: Partial<IConfig> | (() => Partial<IConfig>) = {};
     HttpInterceptorModule,
     NgxMaskModule.forRoot(optionMask),
     NgxPaginationModule,
-    NgbModule
+    NgbModule,
+    NgxCurrencyModule
   ],
   providers: [],
   bootstrap: [AppComponent]
