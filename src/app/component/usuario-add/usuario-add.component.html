@@ -42,10 +42,16 @@
 		<span style="color: red; font-size: 23px;" *ngIf="prof.invalid"> *</span>
 		<select #prof="ngModel" [(ngModel)]="usuario.profissao.id" [ngModelOptions]="{standalone: true}"
 			class="form-control" name="profissao" required>
-			<option [ngValue]="p.id" *ngFor = "let p of profissoes">{{p.descricao}}</option>
+			<option *ngFor = "let p of profissoes" [ngValue]="p.id">{{p.descricao}}</option>
 		</select>
 	</div>
-
+	<div class="col-md-4">
+		<label for="passWord" class="form-label">Salário</label>
+		<span style="color: red; font-size: 23px;" *ngIf="salario.invalid"> *</span>
+		<input #salario="ngModel" [(ngModel)]="usuario.salario" [ngModelOptions]="{standalone: true}"
+			class="form-control" name="salario" required placeholder="Exemplo: 200.000,00"
+			currencyMask [options] = "{prefix: ' ', suffix: ' MZN', thousands: '.', decimal: ',', align: 'left' }">
+	</div>
 	<div class="card text-center">
 		<div>
 			Endereco do Usuário
