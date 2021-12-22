@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AppConstants } from '../app-constants';
 import { Router } from "@angular/router";
+import { Usuario } from '../model/usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,23 @@ import { Router } from "@angular/router";
 export class LoginService {
 
   constructor(private http: HttpClient, private router: Router) { }
+
+  recuperar(login: any) {
+
+    let user = new Usuario();
+    user.userName = login;
+
+    return this.http.post(AppConstants.baseServer + 'recuperar/', user)
+      .subscribe(data => {
+
+        alert(JSON.parse(JSON.stringify(data)).error);
+      },
+        error => {
+          console.error("Erro ao recuperar Login" + error);
+        }
+
+      )
+  }
 
   login(usuario: any) {
     return this.http.post(AppConstants.baseLogin, JSON.stringify(usuario))
