@@ -19,5 +19,7 @@
     </div>-->
 	</div>
 	<button type="button" [disabled]="user.invalid || senha.invalid" class="btn btn-primary"
-		(click)="login()">Acessar</button>
+		(click)="login()" style="margin-right: 10px;">Acessar</button>
+	<button type="button" [disabled]="user.invalid" class="btn btn-primary"
+		(click)="recuperar()">Recuperar Acesso</button>
 </form>
