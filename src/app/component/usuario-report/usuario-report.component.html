@@ -5,7 +5,7 @@
 	<div class="form-group col-md-3">
 		<label for="inicio" class="form-label">Data Inicial de Nascimento</label>
 		<div class="input-group">
-			<input type="text" #dataNasc="ngModel" [(ngModel)]="userReport.dataInicial"
+			<input type="text" #dataInicio="ngModel" [(ngModel)]="userReport.dataInicial"
 				[ngModelOptions]="{standalone: true}" class="form-control" name="inicio" id="inicio"
 				placeholder="dd/mm/yyyy" ngbDatepicker #inicio="ngbDatepicker">
 			<div class="input-group-append">
@@ -18,7 +18,7 @@
 	<div class="form-group col-md-3">
 		<label for="final" class="form-label">Data Final de Nascimento</label>
 		<div class="input-group">
-			<input type="text" #dataNasc="ngModel" [(ngModel)]="userReport.dataInicial"
+			<input type="text" #dataFinal="ngModel" [(ngModel)]="userReport.dataFinal"
 				[ngModelOptions]="{standalone: true}" class="form-control" name="final" id="final"
 				placeholder="dd/mm/yyyy" ngbDatepicker #final="ngbDatepicker">
 			<div class="input-group-append">
