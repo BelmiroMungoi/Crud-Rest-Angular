@@ -36,15 +36,15 @@
 				<button type="button" class="btn btn-primary" (click)="birthday.toggle()">.</button>
 			</div>
 		</div>
-	</div>
+	</div><!--
 	<div class="col-md-4">
 		<label for="profissao" class="form-label">Profissão</label>
 		<span style="color: red; font-size: 23px;" *ngIf="prof.invalid"> *</span>
-		<select #prof="ngModel" [(ngModel)]="usuario.profissao.id" [ngModelOptions]="{standalone: true}"
-			class="form-control" name="profissao" required>
+		<select  #prof="ngModel" [(ngModel)]="usuario.profissao.id" [ngModelOptions]="{standalone: true}"
+			class="form-control" name="profissao"required>
 			<option *ngFor = "let p of profissoes" [ngValue]="p.id">{{p.descricao}}</option>
 		</select>
-	</div>
+	</div>-->
 	<div class="col-md-4">
 		<label for="passWord" class="form-label">Salário</label>
 		<span style="color: red; font-size: 23px;" *ngIf="salario.invalid"> *</span>

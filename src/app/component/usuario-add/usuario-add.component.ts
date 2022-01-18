@@ -5,6 +5,7 @@ import { UsuarioService } from 'src/app/service/usuario.service';
 import { Endereco } from 'src/app/model/endereco'
 import { NgbDateAdapter, NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Profissao } from 'src/app/model/profissao';
+import { FormBuilder } from '@angular/forms';
 
 @Injectable()
 export class FormatDateAdapter extends NgbDateAdapter<string>{
@@ -78,8 +79,11 @@ export class UsuarioAddComponent implements OnInit {
 
   profissoes!: Array<Profissao>;
 
-  constructor(private routeActive: ActivatedRoute, private userService: UsuarioService) { }
+  constructor(private routeActive: ActivatedRoute, private userService: UsuarioService, public fb: FormBuilder) { }
 
+  regForm = this.fb.group({
+    profName: ['']
+  })
   ngOnInit(): void {
 
     this.userService.getProfissaoList().subscribe(data => {
@@ -88,7 +92,7 @@ export class UsuarioAddComponent implements OnInit {
 
     let id = this.routeActive.snapshot.paramMap.get('id');
 
-    if (id != null) {
+    if (id !== null) {
       this.userService.getUserById(id).subscribe(data => {
         this.usuario = data;
       });
