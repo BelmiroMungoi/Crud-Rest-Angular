@@ -14,6 +14,7 @@ import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxCurrencyModule } from "ngx-currency";
+import { UsuarioReportComponent } from './component/usuario-report/usuario-report.component';
 
 export const optionMask: Partial<IConfig> | (() => Partial<IConfig>) = {};
 
@@ -23,7 +24,8 @@ export const optionMask: Partial<IConfig> | (() => Partial<IConfig>) = {};
     HomeComponent,
     LoginComponent,
     UsuarioComponent,
-    UsuarioAddComponent
+    UsuarioAddComponent,
+    UsuarioReportComponent
   ],
   imports: [
     BrowserModule,
