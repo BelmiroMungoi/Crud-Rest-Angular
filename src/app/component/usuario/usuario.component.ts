@@ -66,6 +66,9 @@ export class UsuarioComponent implements OnInit {
     }
   }
 
+  printReport(){
+    return this.usuarioService.downloadPdfReport();
+  }
 
 
 }
