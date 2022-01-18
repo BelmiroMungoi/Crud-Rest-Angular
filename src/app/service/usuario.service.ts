@@ -43,7 +43,7 @@ export class UsuarioService {
   }
 
   deleteEndereco(id: Number): Observable<any> {
-    return this.http.delete(AppConstants.baseUrl + "removeEndereco/" + id, {responseType: 'text'});
+    return this.http.delete(AppConstants.baseUrl + "removeEndereco/" + id, { responseType: 'text' });
   }
 
   getProfissaoList(): Observable<any> {
@@ -57,5 +57,12 @@ export class UsuarioService {
     } else {
       return false;
     }
+  }
+
+  downloadPdfReport() {
+    return this.http.get(AppConstants.baseUrl + 'report',
+      { responseType: 'text' }).subscribe(data => {
+        document.querySelector('iframe')!.src = data;
+      });
   }
 }
