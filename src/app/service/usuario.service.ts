@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AppConstants } from '../app-constants';
+import { UserReport } from '../model/userReport';
 
 @Injectable({
   providedIn: 'root'
@@ -64,5 +65,11 @@ export class UsuarioService {
       { responseType: 'text' }).subscribe(data => {
         document.querySelector('iframe')!.src = data;
       });
+  }
+
+  downloadPdfReportParam(report: UserReport) {
+    return this.http.post(AppConstants.baseUrl + 'report/', report, { responseType: 'text' }).subscribe(data => {
+      document.querySelector('iframe')!.src = data;
+    });
   }
 }
