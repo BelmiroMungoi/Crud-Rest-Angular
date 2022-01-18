@@ -6,8 +6,11 @@
 
 	<div class="col-md-4">
 		<button type="button" (click)="findUser()" class="btn btn-secondary mb-2">Pesquisar</button>
-		<button type="button" [routerLink]="['/usuarioAdd']" style="width: 93px; margin-left: 5px;" class="btn btn-success mb-2">Novo</button>
-	</div>	
+		<button type="button" [routerLink]="['/usuarioAdd']" style="width: 93px; margin-left: 5px;"
+			class="btn btn-success mb-2">Novo</button>
+		<button type="button" (click)="printReport()" data-bs-toggle="modal" data-bs-target="#myModal"
+			style="width: 93px; margin-left: 5px;" class="btn btn-danger mb-2">Relatório</button>
+	</div>
 </form>
 
 <table class="table table-striped table-hover">
@@ -17,20 +20,36 @@
 		<th>Nome de Usuario</th>
 		<th>Accões</th>
 	</thead>
-	<tbody>		
-		<tr *ngFor="let usuario of usuarios | paginate: { itemsPerPage: 8, currentPage: p, totalItems: total}; let i = index">
+	<tbody>
+		<tr
+			*ngFor="let usuario of usuarios | paginate: { itemsPerPage: 8, currentPage: p, totalItems: total}; let i = index">
 			<td>{{usuario.id}}</td>
 			<td>{{usuario.fullName}}</td>
 			<td>{{usuario.userName}}</td>
 			<td>
-				<button (click)="deleteUser(usuario.id, i)" style="width: 77px; margin-right: 5px;" class="btn btn-primary">Deletar</button>
-				<button [routerLink]="['/usuarioAdd', usuario.id]" style="width: 77px;" class="btn btn-warning">Editar</button>
+				<button (click)="deleteUser(usuario.id, i)" style="width: 77px; margin-right: 5px;"
+					class="btn btn-primary">Deletar</button>
+				<button [routerLink]="['/usuarioAdd', usuario.id]" style="width: 77px;"
+					class="btn btn-warning">Editar</button>
 			</td>
 		</tr>
 	</tbody>
 </table>
 
 <div class="text-center">
-	<pagination-controls (pageChange) ="loadPage(p = $event)" 
-	previousLabel="Anterior" nextLabel="Próximo"></pagination-controls>
+	<pagination-controls (pageChange)="loadPage(p = $event)" previousLabel="Anterior" nextLabel="Próximo">
+	</pagination-controls>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-xl">
+		<div class="modal-content">
+			<div class="modal-body">
+				<iframe id="pdf" width="100%" height="500" frameBorder="0" allowtransparece="true"></iframe>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+			</div>
+		</div>
+	</div>
 </div>
