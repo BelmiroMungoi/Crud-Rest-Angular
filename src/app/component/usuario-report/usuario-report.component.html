@@ -1,50 +1,47 @@
-<form id="formUser" cdlass="row g-3"  autocomplete="off">
+<form id="formUser" class="row g-3" autocomplete="off">
 
 	<h2>Tela de Relatório</h2>
 
-
-	<div class="col-md-12">
-		<label for="fullName" class="form-label">Nome Completo</label>
-		<span style="color: red; font-size: 23px;" *ngIf="nomeValidate.invalid"> *</span>
-		<input type="text" #nomeValidate="ngModel" [(ngModel)]="usuario.fullName" [ngModelOptions]="{standalone: true}"
-			class="form-control" name="fullName" required placeholder="Exemplo: Monkey D. Luffy">
-	</div>
-	<div class="col-md-6">
-		<label for="userName" class="form-label">Nome de Usuário</label>
-		<span style="color: red; font-size: 23px;" *ngIf="userValidate.invalid"> *</span>
-		<input type="text" #userValidate="ngModel" [(ngModel)]="usuario.userName" [ngModelOptions]="{standalone: true}"
-			class="form-control" name="userName" required placeholder="Exemplo: Monkey">
-	</div>
-	<div class="col-md-6">
-		<label for="passWord" class="form-label">Palavra-Passe</label>
-		<span style="color: red; font-size: 23px;" *ngIf="senha.invalid"> *</span>
-		<input type="password" #senha="ngModel" [(ngModel)]="usuario.passWord" [ngModelOptions]="{standalone: true}"
-			class="form-control" name="passWord" required placeholder="Exemplo: password12">
-	</div>
-	<div class="form-group col-md-4">
-		<label for="birthday" class="form-label">Data de Nascimento</label>
-		<span style="color: red; font-size: 23px;" *ngIf="dataNasc.invalid"> *</span>
+	<div class="form-group col-md-3">
+		<label for="inicio" class="form-label">Data Inicial de Nascimento</label>
 		<div class="input-group">
-			<input type="text" #dataNasc="ngModel" [(ngModel)]="usuario.dataNascimento"
-				[ngModelOptions]="{standalone: true}" class="form-control" name="birthday" id="birthday" required
-				placeholder="dd/mm/yyyy" ngbDatepicker #birthday="ngbDatepicker">
+			<input type="text" #dataNasc="ngModel" [(ngModel)]="userReport.dataInicial"
+				[ngModelOptions]="{standalone: true}" class="form-control" name="inicio" id="inicio"
+				placeholder="dd/mm/yyyy" ngbDatepicker #inicio="ngbDatepicker">
 			<div class="input-group-append">
-				<button type="button" class="btn btn-primary" (click)="birthday.toggle()">.</button>
+				<button type="button" class="btn btn-primary" (click)="inicio.toggle()">.</button>
 			</div>
 		</div>
 	</div>
 
-	
 
-	
+	<div class="form-group col-md-3">
+		<label for="final" class="form-label">Data Final de Nascimento</label>
+		<div class="input-group">
+			<input type="text" #dataNasc="ngModel" [(ngModel)]="userReport.dataInicial"
+				[ngModelOptions]="{standalone: true}" class="form-control" name="final" id="final"
+				placeholder="dd/mm/yyyy" ngbDatepicker #final="ngbDatepicker">
+			<div class="input-group-append">
+				<button type="button" class="btn btn-primary" (click)="final.toggle()">.</button>
+			</div>
+		</div>
+	</div>
 
 	<div class="col-md-12">
-		<button type="button" class="btn btn-success" style="width: 87px;"
-			[routerLink]="['/usuarioList']">Voltar</button>
-		<button type="button" class="btn btn-primary" style="width: 87px; margin-left: 5px;"
-			[disabled]="nomeValidate.invalid || userValidate.invalid || senha.invalid"
-			(click)="saveUser()">Salvar</button>
-		<button type="button" class="btn btn-danger" style="width: 87px; margin-left: 5px;"
-			(click)="cancelar()">Cancelar</button>
+		<button type="button" (click)="printReportParam()" data-bs-toggle="modal" data-bs-target="#myModal"
+			class="btn btn-primary">Imprimir Relatório</button>
 	</div>
 </form>
+
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-xl">
+		<div class="modal-content">
+			<div class="modal-body">
+				<iframe id="pdf" width="100%" height="600" frameBorder="0" allowtransparece="true"></iframe>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+			</div>
+		</div>
+	</div>
+</div>
