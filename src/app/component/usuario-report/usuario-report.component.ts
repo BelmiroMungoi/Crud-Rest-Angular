@@ -21,7 +21,7 @@ export class FormatDateAdapter extends NgbDateAdapter<string>{
     return null;
   }
   toModel(date: NgbDateStruct | null): string | null {
-    return date ? date.day + this.DELIMITER + date.month + this.DELIMITER + date.year : null;
+    return date ? validaDate(date.day) + this.DELIMITER + validaDate(date.month) + this.DELIMITER + date.year : null;
   }
 
 }
@@ -50,7 +50,7 @@ export class FormataData extends NgbDateParserFormatter {
   }
 
   toModel(date: NgbDateStruct | null): string | null {
-    return date ? date.day + this.DELIMITER + date.month + this.DELIMITER + date.year : null;
+    return date ? validaDate(date.day) + this.DELIMITER + validaDate(date.month) + this.DELIMITER + date.year : null;
   }
 }
 
