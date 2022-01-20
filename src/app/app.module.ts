@@ -15,6 +15,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxCurrencyModule } from "ngx-currency";
 import { UsuarioReportComponent } from './component/usuario-report/usuario-report.component';
+import { NgChartsModule } from "ng2-charts";
+import { BarChartComponent } from './component/bar-chart/bar-chart.component';
 
 export const optionMask: Partial<IConfig> | (() => Partial<IConfig>) = {};
 
@@ -25,7 +27,8 @@ export const optionMask: Partial<IConfig> | (() => Partial<IConfig>) = {};
     LoginComponent,
     UsuarioComponent,
     UsuarioAddComponent,
-    UsuarioReportComponent
+    UsuarioReportComponent,
+    BarChartComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ export const optionMask: Partial<IConfig> | (() => Partial<IConfig>) = {};
     NgxMaskModule.forRoot(optionMask),
     NgxPaginationModule,
     NgbModule,
-    NgxCurrencyModule
+    NgxCurrencyModule,
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
