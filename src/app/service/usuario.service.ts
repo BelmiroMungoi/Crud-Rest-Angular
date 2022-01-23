@@ -72,4 +72,8 @@ export class UsuarioService {
       document.querySelector('iframe')!.src = data;
     });
   }
+
+  loadChart(): Observable<any> {
+    return this.http.get(AppConstants.baseUrl + "grafico");
+  }
 }
