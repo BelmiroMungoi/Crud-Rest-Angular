@@ -15,7 +15,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxCurrencyModule } from "ngx-currency";
 import { UsuarioReportComponent } from './component/usuario-report/usuario-report.component';
-import { NgChartsModule } from "ng2-charts";
+import { ChartsModule } from "ng2-charts";
 import { BarChartComponent } from './component/bar-chart/bar-chart.component';
 
 export const optionMask: Partial<IConfig> | (() => Partial<IConfig>) = {};
@@ -41,7 +41,7 @@ export const optionMask: Partial<IConfig> | (() => Partial<IConfig>) = {};
     NgxPaginationModule,
     NgbModule,
     NgxCurrencyModule,
-    NgChartsModule
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
