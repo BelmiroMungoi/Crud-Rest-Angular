@@ -19,12 +19,12 @@ export class HeaderInterceptorService implements HttpInterceptor {
       });
 
       //retorna a sessao
-      return next.handle(tokenRequest).pipe(tap((event: HttpEvent<any>)=> {
+      return next.handle(tokenRequest).pipe(tap((event: HttpEvent<any>) => {
         if (event instanceof HttpResponse && (event.status === 200 || event.status === 201)) {
           console.info("Sucesso na operacao")
         }
       }),
-       catchError(this.processError));
+        catchError(this.processError));
 
     } else {
       return next.handle(req).pipe(catchError(this.processError));
@@ -33,14 +33,18 @@ export class HeaderInterceptorService implements HttpInterceptor {
 
   constructor() { }
 
-  processError(error: HttpErrorResponse){
+  processError(error: HttpErrorResponse) {
     let errorMessage = 'Erro Desconhecido';
 
-    if (error.error instanceof ErrorEvent){
+    if (error.error instanceof ErrorEvent) {
       console.error(error.error);
       errorMessage = 'Error: ' + error.error.error;
     } else {
-      errorMessage = 'Codigo: ' + error.error.code + '\n' + error.error.error;
+      if (error.status == 403) {
+        errorMessage = 'Acesso Negado: Faça o login Novamente'
+      } else {
+        errorMessage = 'Codigo: ' + error.error.code + '\n' + error.error.error;
+      }
     }
     window.alert(errorMessage);
     return throwError(errorMessage);
