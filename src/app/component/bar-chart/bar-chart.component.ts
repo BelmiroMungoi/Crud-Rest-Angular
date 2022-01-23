@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
+import { UserChart } from 'src/app/model/userChart';
+import { UsuarioService } from 'src/app/service/usuario.service';
 
 @Component({
   selector: 'app-bar-chart',
@@ -9,20 +11,32 @@ import { Label } from 'ng2-charts';
 })
 export class BarChartComponent implements OnInit {
 
-  constructor() { }
+  constructor(private usuarioService: UsuarioService) { }
+
+  userChart = new UserChart();
 
   ngOnInit(): void {
+    this.usuarioService.loadChart().subscribe(data => {
+      this.userChart = data;
+      this.barChartLabels = this.userChart.fullName.split(',');
+
+      var salarios = JSON.parse('[' + this.userChart.salario + ']')
+
+      this.barChartData = [
+        { data: salarios, label: 'Salário Usuário' }
+      ];
+    })
   }
   barChartOptions: ChartOptions = {
     responsive: true,
   };
-  barChartLabels: Label[] = ['Apple', 'Banana', 'Kiwifruit', 'Blueberry', 'Orange', 'Grapes'];
+  barChartLabels: Label[];
   barChartType: ChartType = 'bar';
   barChartLegend = true;
- //barChartPlugins = [];
+  barChartPlugins: any[] = [];
 
   barChartData: ChartDataSets[] = [
-    { data: [45, 37, 60, 70, 46, 33], label: 'Salário Usuário' }
+    { data: [], label: 'Salário Usuário' }
   ];
 
 }
