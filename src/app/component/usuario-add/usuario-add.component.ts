@@ -101,15 +101,15 @@ export class UsuarioAddComponent implements OnInit {
     return (this.usuario.profissao.id) ? this.usuario.profissao : []
   }
 
-  saveUser(addForm: NgForm) {
+  saveUser() {
     if (this.usuario.id != null && this.usuario.id.toString().trim() != null) {
       this.userService.updateUser(this.usuario).subscribe(data => {
-        this.cancelar(addForm);
+        this.cancelar();
       });
     } else {
 
       this.userService.saveUser(this.usuario).subscribe(data => {
-        this.cancelar(addForm);
+        this.cancelar();
       });
     }
   }
@@ -139,8 +139,9 @@ export class UsuarioAddComponent implements OnInit {
     }
   }
 
-  cancelar(userForm: NgForm) {
-    userForm.reset();
+  cancelar() {
+    this.usuario = new Usuario();
+    this.endereco = new Endereco();
   }
 
 }
