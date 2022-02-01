@@ -24,7 +24,7 @@ export class UsuarioComponent implements OnInit {
   }
 
   findUser(): void {
-    if (this.nome === '') {
+    if (this.nome == null || this.nome == '') {
       this.usuarioService.getUserList().subscribe(data => {
         this.usuarios = data.content;
         this.total = data.totalElements;
@@ -42,31 +42,25 @@ export class UsuarioComponent implements OnInit {
     this.usuarioService.deleteUser(id).subscribe(data => {
       this.usuarios.splice(index, 1);
 
-      /*this.usuarioService.getUserList().subscribe(data => {
-        this.usuarios = data;
-      });*/
     });
   }
 
   loadPage(pag: any) {
 
-    if (this.nome !== '') {
-      this.usuarioService.findUserByNamePage(this.nome, pag - 1).subscribe(data => {
-        this.usuarios = data.content;
-        this.total = data.totalElements;
-        console.info('Heyyy ' + pag)
-      });
-
-    } else {
+    if (this.nome == null || this.nome == '') {
       this.usuarioService.getUserListPage(pag - 1).subscribe(data => {
         this.usuarios = data.content;
         this.total = data.totalElements;
-        console.info('Heyy');
+      });
+    } else {
+      this.usuarioService.findUserByNamePage(this.nome, pag - 1).subscribe(data => {
+        this.usuarios = data.content;
+        this.total = data.totalElements;
       });
     }
   }
 
-  printReport(){
+  printReport() {
     return this.usuarioService.downloadPdfReport();
   }
 
