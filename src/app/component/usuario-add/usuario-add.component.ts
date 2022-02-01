@@ -5,7 +5,7 @@ import { UsuarioService } from 'src/app/service/usuario.service';
 import { Endereco } from 'src/app/model/endereco'
 import { NgbDateAdapter, NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Profissao } from 'src/app/model/profissao';
-import { FormBuilder } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 @Injectable()
 export class FormatDateAdapter extends NgbDateAdapter<string>{
@@ -79,11 +79,9 @@ export class UsuarioAddComponent implements OnInit {
 
   profissoes!: Array<Profissao>;
 
-  constructor(private routeActive: ActivatedRoute, private userService: UsuarioService, public fb: FormBuilder) { }
+  constructor(private routeActive: ActivatedRoute, private userService: UsuarioService) { }
 
-  regForm = this.fb.group({
-    profName: ['']
-  })
+
   ngOnInit(): void {
 
     this.userService.getProfissaoList().subscribe(data => {
@@ -99,17 +97,19 @@ export class UsuarioAddComponent implements OnInit {
     }
   }
 
-  saveUser() {
+  profissao(): any {
+    return (this.usuario.profissao.id) ? this.usuario.profissao : []
+  }
+
+  saveUser(addForm: NgForm) {
     if (this.usuario.id != null && this.usuario.id.toString().trim() != null) {
       this.userService.updateUser(this.usuario).subscribe(data => {
-        this.cancelar();
-        console.log("Editando usuario " + data)
+        this.cancelar(addForm);
       });
     } else {
 
       this.userService.saveUser(this.usuario).subscribe(data => {
-        this.cancelar();
-        console.log("Salvando Usuario " + data)
+        this.cancelar(addForm);
       });
     }
   }
@@ -139,9 +139,8 @@ export class UsuarioAddComponent implements OnInit {
     }
   }
 
-  cancelar() {
-    this.usuario = new Usuario();
-    this.endereco = new Endereco();
+  cancelar(userForm: NgForm) {
+    userForm.reset();
   }
 
 }
