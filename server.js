@@ -3,10 +3,10 @@ const path = require('path');
 
 const app = express();
 
-app.use(express.static(__dirname + '/dist/crudAngular12'));
+app.use(express.static(__dirname + '/dist/Crud-Rest-Angular'));
 
 app.get('/*', function (req, res) {
-    res.sendFile(path.join(__dirname + '/dist/crudAngular12/index.html'));
+    res.sendFile(path.join(__dirname + '/dist/Crud-Rest-Angular/index.html'));
 });
 
 app.listen(process.env.PORT || 8080);
